@@ -9,6 +9,7 @@
         <parameter key="liip_theme.active_theme.class">Liip\ThemeBundle\ActiveTheme</parameter>
         <parameter key="liip_theme.cache_warmer.class">Liip\ThemeBundle\CacheWarmer\TemplatePathsCacheWarmer</parameter>
         <parameter key="liip_theme.theme_auto_detect.class">Liip\ThemeBundle\Helper\DeviceDetection</parameter>
+        <parameter key="liip_theme.twig.loader.filesystem.class">Liip\ThemeBundle\Loader\FilesystemLoader</parameter>
     </parameters>
 
     <services>
@@ -23,6 +24,13 @@
             <argument type="service" id="liip_theme.file_locator" />
             <argument>%kernel.cache_dir%</argument>
             <argument type="service" id="liip_theme.active_theme" />
+        </service>
+
+        <service id="liip_theme.twig.loader.filesystem" class="%liip_theme.twig.loader.filesystem.class%" public="false">
+            <argument type="service" id="templating.locator" />
+            <argument type="service" id="templating.name_parser" />
+            <argument type="service" id="liip_theme.active_theme" />
+            <tag name="twig.loader"/>
         </service>
 
         <service id="liip_theme.file_locator" class="%liip_theme.file_locator.class%" public="false">
