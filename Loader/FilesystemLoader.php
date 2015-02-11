@@ -36,7 +36,4 @@ class FilesystemLoader extends BaseFilesystemLoader
         return $file;
     }
 
-
-
-
 }
